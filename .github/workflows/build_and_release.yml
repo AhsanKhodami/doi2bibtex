@@ -29,7 +29,7 @@ jobs:
 
     - name: Build EXE with Icon
       run: |
-        pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py
+        pyinstaller --onefile --hidden-import=requests --icon=doi2bibtex.ico doi2bibtex.py
 
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1

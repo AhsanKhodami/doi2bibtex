@@ -36,10 +36,14 @@ jobs:
       run: |
         pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py  # Create EXE with custom icon
 
+    - name: Create and Push a Tag
+      run: |
+        git tag -a v${{ github.run_number }} -m "Release v${{ github.run_number }}"
+        git push origin v${{ github.run_number }}  # Push the tag to GitHub
+
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: dist/doi2bibtex.exe  # Path to the generated EXE
-
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication

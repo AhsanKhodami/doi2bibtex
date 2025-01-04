@@ -1,7 +1,3 @@
-Here’s a comprehensive `README.md` for your application:
-
----
-
 # DOI2BibTeX Fetcher
 
 ![DOI2BibTeX Fetcher](https://raw.githubusercontent.com/AhsanKhodami/doi2bibtex/refs/heads/main/mainapplication.png)

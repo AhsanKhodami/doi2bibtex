@@ -1,5 +1,5 @@
 # DOI2BibTeX Fetcher
-
+[![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
 ![DOI2BibTeX Fetcher](https://raw.githubusercontent.com/AhsanKhodami/doi2bibtex/refs/heads/main/mainapplication.png)
 
 DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application designed to fetch BibTeX entries for DOIs (Digital Object Identifiers). It provides additional customization, such as including or excluding abstracts, and offers user-friendly features like copying BibTeX entries to the clipboard.

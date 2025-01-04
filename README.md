@@ -1,3 +1,4 @@
+
 # DOI2BibTeX Fetcher
 
 [![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
@@ -14,7 +15,22 @@ DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application design
 - Optionally include or exclude the abstract from BibTeX entries.
 - Copy fetched BibTeX entries directly to the clipboard for easy use.
 - Restart the application to input new DOIs.
+- Save BibTeX references to a `.bib` file.
 - Clean and modern GUI for seamless user experience.
+
+---
+
+## Version 2.0.0
+
+<details>
+  <summary><strong>What's New in Version 2.0.0?</strong></summary>
+  
+### New Features:
+- **Save BibTeX References**: You can now save the fetched BibTeX entries to a `.bib` file, which is useful for managing your references.
+- **Improved GUI**: The buttons are better aligned, making the user experience more intuitive.
+- **Save Confirmation**: When you save your BibTeX entries, a green "Saved!" message will be displayed next to the Save button to confirm the action.
+
+</details>
 
 ---
 
@@ -53,8 +69,13 @@ Input one or more DOIs into the text box. You can use any of the following forma
 ### 5. Copy to Clipboard
 - After fetching BibTeX entries, click the **"Copy to Clipboard"** button to copy all entries to your clipboard.
 
-### 6. Restart the Form
+### 6. Save to File (New in Version 2.0.0)
+- After fetching the BibTeX entries, click the **"Save to file"** button to save the entries to a `.bib` file on your computer.
+- A green "Saved!" message will appear next to the **Save** button to confirm the save action.
+
+### 7. Restart the Form
 - Click the **"Restart"** button to clear all input and output fields, resetting the application for new entries.
+
 ---
 
 ## Example
@@ -90,7 +111,7 @@ Enter the following DOIs into the input field:
 ## Installation and Setup
 
 ### Windows Users:
-Easily navigate to the `release` here in the **right section** Or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/tag/Windows), download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
+Easily navigate to the `release` here in the **right section** Or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/), download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
 
 ### Prerequisites
 - Python 3.7 or higher installed on your system.

@@ -3,6 +3,7 @@ from tkinter import PhotoImage
 from PIL import Image, ImageTk
 import requests
 from io import BytesIO
+import os
 
 def get_bibtex(doi, include_abstract=False):
     doi = doi.strip()
@@ -50,6 +51,36 @@ def open_link(url):
 
 def exit_application():
     root.destroy()
+
+def save_bibtex_to_file(bibtex_entries):
+    file_path = "references.bib"  # The file where references will be saved
+    if not os.path.exists(file_path):
+        # If the file does not exist, create it
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(bibtex_entries))
+    else:
+        # If the file exists, we need to check for duplicates and append
+        existing_dois = set()
+        with open(file_path, "r", encoding="utf-8") as f:
+            # Read existing DOIs from the file
+            existing_dois = {line.strip().split("{")[1].split(",")[0] for line in f if line.strip().startswith("@")}
+        
+        with open(file_path, "a", encoding="utf-8") as f:
+            for bibtex in bibtex_entries:
+                # Extract DOI from the BibTeX entry (assuming it's the first field)
+                new_doi = bibtex.split("{")[1].split(",")[0]
+                if new_doi not in existing_dois:
+                    f.write("\n" + bibtex)  # Add to file if DOI is not already present
+                    existing_dois.add(new_doi)
+
+def save_to_file():
+    """Handle save button click event."""
+    bibtex_text = output_text.get("1.0", tk.END).strip()
+    if not bibtex_text:
+        message_label.config(text="No BibTeX to save!", fg="red")
+        return
+    save_bibtex_to_file([bibtex_text])
+    message_label.config(text="Saved!", fg="green")  # Show green "Saved!" message
 
 root = tk.Tk()
 root.title("DOI2BibTeX Fetcher")
@@ -123,9 +154,21 @@ abstract_var = tk.BooleanVar(value=False)
 abstract_check = tk.Checkbutton(root, text="Include abstract", variable=abstract_var, bg="#f5f5f5", font=("Helvetica", 10))
 abstract_check.pack(pady=5)
 
+# Frame for Fetch and Save buttons
+button_frame = tk.Frame(root, bg="#f5f5f5")
+button_frame.pack(pady=10)
+
 # Fetch button
-fetch_button = tk.Button(root, text="Fetch BibTeX", command=fetch_bibtex, bg="#4caf50", fg="white", font=("Helvetica", 10, "bold"))
-fetch_button.pack(pady=5)
+fetch_button = tk.Button(button_frame, text="Fetch BibTeX", command=fetch_bibtex, bg="#4caf50", fg="white", font=("Helvetica", 10, "bold"))
+fetch_button.pack(side=tk.LEFT, padx=10)
+
+# Save button
+save_button = tk.Button(button_frame, text="Save to file", command=save_to_file, bg="#4caf50", fg="white", font=("Helvetica", 10, "bold"))
+save_button.pack(side=tk.LEFT, padx=10)
+
+# Label for saved message (Save success message)
+message_label = tk.Label(root, text="", bg="#f5f5f5", font=("Helvetica", 10, "bold"))
+message_label.pack(pady=5)
 
 # Label for output
 output_label = tk.Label(root, text="BibTeX Output:", bg="#f5f5f5", font=("Helvetica", 12, "bold"))

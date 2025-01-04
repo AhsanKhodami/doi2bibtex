@@ -24,17 +24,18 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install Pillow --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
-        pip install pyinstaller
+        pip install -r requirements.txt
+        pip install pyinstaller  # Install PyInstaller for building the EXE
 
-    - name: Build EXE with Icon
+    - name: Build EXE with PyInstaller
       run: |
         pyinstaller --onefile --hidden-import=requests --icon=doi2bibtex.ico doi2bibtex.py
+      # Add --hidden-import for requests to explicitly include it
 
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: dist/doi2bibtex.exe
-        tag_name: ${{ github.ref_name }}  # Use the pushed tag as the release tag
+        files: dist/doi2bibtex.exe  # Path to the generated standalone EXE
+        tag_name: ${{ github.ref_name }}  # Use the pushed tag for the release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

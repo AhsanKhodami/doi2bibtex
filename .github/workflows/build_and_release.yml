@@ -23,7 +23,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt  # Install dependencies if needed
+        pip install --upgrade pip  # Ensure pip is up-to-date
+        # Install precompiled Pillow binaries for Python 3.12 to avoid compilation issues
+        pip install Pillow --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
+        pip install -r requirements.txt  # Install project dependencies
 
     - name: Install PyInstaller
       run: |

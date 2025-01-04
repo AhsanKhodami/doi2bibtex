@@ -1,56 +1,51 @@
-
-# DOI2BibTeX Fetcher
+# **DOI2BibTeX Fetcher**
 
 [![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
 
-![DOI2BibTeX Fetcher](https://raw.githubusercontent.com/AhsanKhodami/doi2bibtex/refs/heads/main/mainapplication.png)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/AhsanKhodami/doi2bibtex/refs/heads/main/mainapplication.png" alt="DOI2BibTeX Fetcher">
+</div>
 
-DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application designed to fetch BibTeX entries for DOIs (Digital Object Identifiers). It provides additional customization, such as including or excluding abstracts, and offers user-friendly features like copying BibTeX entries to the clipboard.
-
----
-
-## Features
-
-- Fetch BibTeX entries for one or more DOIs.
-- Optionally include or exclude the abstract from BibTeX entries.
-- Copy fetched BibTeX entries directly to the clipboard for easy use.
-- Restart the application to input new DOIs.
-- Save BibTeX references to a `.bib` file.
-- Clean and modern GUI for seamless user experience.
+**DOI2BibTeX Fetcher** is a lightweight, Python-based GUI application designed to fetch BibTeX entries for DOIs (Digital Object Identifiers). With its modern interface and intuitive design, it simplifies citation management by offering customization options such as including/excluding abstracts, saving entries to files, and copying entries to the clipboard.
 
 ---
 
-## Version v2.0.545680
+## **Features**
+
+- Fetch BibTeX entries for multiple DOIs at once.
+- Choose whether to include or exclude abstracts in the BibTeX entries.
+- Save BibTeX references to `.bib` files for easy management.
+- Copy fetched BibTeX entries directly to the clipboard.
+- Clean and responsive GUI designed for seamless user experience.
+- Restart functionality to reset inputs and outputs for new DOIs.
+
+---
+
+## **Version v2.0.545680**
 
 <details>
-  <summary><strong>What's New in Version 2.v2.0.545680?</strong></summary>
-  <font color="green">This version is tested and working with standalone Windows executable file.</font>
+  <summary><strong>What’s New in Version 2.0.545680?</strong></summary>
 
-  
-### New Features:
-- **Save BibTeX References**: You can now save the fetched BibTeX entries to a `.bib` file, which is useful for managing your references.
-- **Improved GUI**: The buttons are better aligned, making the user experience more intuitive.
-- **Save Confirmation**: When you save your BibTeX entries, a green "Saved!" message will be displayed next to the Save button to confirm the action.
+  - **Save BibTeX References**: Users can now save BibTeX entries directly to `.bib` files.
+  - **Enhanced User Interface**: Improved button alignment for a more intuitive experience.
+  - **Save Confirmation Message**: A green "Saved!" message appears when BibTeX entries are successfully saved to a file.
 
 </details>
 
 ---
 
-## How to Use
+## **How to Use**
 
-### 1. Launch the Application
-Once the application is running, you'll see the interface with the following components:
-- **Top Section**:
-  - The application's logo.
-  - A header titled **"DOI2BibTeX Fetcher"**.
-  - Links to the **Google Scholar** profile and **GitHub repository**.
-- **DOI Input Field**: A text box where you can enter one or more DOIs (separated by space, comma, or new lines).
-- **Abstract Option**: A checkbox to include or exclude abstracts in the BibTeX entries.
-- **Control Buttons**: Buttons to fetch BibTeX, copy to clipboard, restart the form, or exit the application.
-- **Output Field**: A larger text box to display the fetched BibTeX entries.
+### 1. **Launch the Application**
+Upon launching, the GUI displays:
+- **Header**: Application logo, title, and links to the GitHub repository and Google Scholar profile.
+- **DOI Input Field**: Enter one or more DOIs (separated by space, comma, or new lines).
+- **Abstract Option**: Checkbox to include/exclude abstracts.
+- **Control Buttons**: Fetch BibTeX, copy to clipboard, restart, save to file, or exit.
+- **Output Field**: Displays fetched BibTeX entries.
 
-### 2. Enter DOIs
-Input one or more DOIs into the text box. You can use any of the following formats:
+### 2. **Enter DOIs**
+Input one or more DOIs using these formats:
 - Space-separated: `10.1234/example1 10.5678/example2`
 - Comma-separated: `10.1234/example1, 10.5678/example2`
 - Newline-separated:
@@ -59,37 +54,34 @@ Input one or more DOIs into the text box. You can use any of the following forma
   10.5678/example2
   ```
 
-### 3. Fetch BibTeX
-- Click the **"Fetch BibTeX"** button.
-- The application retrieves BibTeX entries for all valid DOIs entered in the input field.
-- BibTeX entries will appear in the output field.
+### 3. **Fetch BibTeX**
+- Click **"Fetch BibTeX"** to retrieve entries for all valid DOIs.
+- The fetched entries will appear in the output field.
 
-### 4. Include/Exclude Abstract
-- Check the **"Include Abstract"** option if you want BibTeX entries to include abstracts.
-- Leave it unchecked to exclude abstracts.
+### 4. **Customize BibTeX**
+- Use the **"Include Abstract"** checkbox to control whether abstracts are included in the entries.
 
-### 5. Copy to Clipboard
-- After fetching BibTeX entries, click the **"Copy to Clipboard"** button to copy all entries to your clipboard.
+### 5. **Save to File**
+- Click **"Save to File"** to save the BibTeX entries to a `.bib` file.
+- A green confirmation message will appear when saving is successful.
 
-### 6. Save to File (New in Version 2.0.0)
-- After fetching the BibTeX entries, click the **"Save to file"** button to save the entries to a `.bib` file on your computer.
-- A green "Saved!" message will appear next to the **Save** button to confirm the save action.
+### 6. **Copy to Clipboard**
+- Click **"Copy to Clipboard"** to copy all BibTeX entries to your clipboard.
 
-### 7. Restart the Form
-- Click the **"Restart"** button to clear all input and output fields, resetting the application for new entries.
+### 7. **Restart the Form**
+- Click **"Restart"** to clear all input and output fields.
 
 ---
 
-## Example
+## **Example**
 
 ### Input
-Enter the following DOIs into the input field:
 ```
 10.1000/xyz123
 10.1016/j.scitotenv.2020.141584
 ```
 
-### Output (when **Include Abstract** is unchecked):
+### Output (without abstracts):
 ```bibtex
 @article{xyz123,
   author = {Author Name},
@@ -110,50 +102,47 @@ Enter the following DOIs into the input field:
 
 ---
 
-## Installation and Setup
+## **Installation and Setup**
 
-### Windows Users:
-Easily navigate to the `release` here in the **right section** Or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/), download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
+### **Windows Users**
+To download the `.exe`:
+- Go to the [Releases](https://github.com/AhsanKhodami/doi2bibtex/releases) section on GitHub.
+- Download the `.exe` file and run it—no Python installation required!
 
-### Prerequisites
-- Python 3.7 or higher installed on your system.
-- Libraries: `requests`, `Pillow`.
-
-### Installation
+### **For Python Users**
+If you'd prefer to run the Python script:
 1. Clone the repository:
    ```bash
    git clone https://github.com/AhsanKhodami/doi2bibtex.git
    ```
-2. Navigate to the application directory:
+2. Navigate to the directory:
    ```bash
    cd doi2bibtex
    ```
-3. Install the required Python libraries:
+3. Install the required libraries:
    ```bash
    pip install requests pillow
    ```
-
-### Running the Application
-Run the Python script to launch the GUI:
-```bash
-python doi2bibtex.py
-```
+4. Launch the GUI:
+   ```bash
+   python doi2bibtex.py
+   ```
 
 ---
 
-## Contribution
+## **Contribution**
 
-Contributions are welcome! If you encounter issues or have suggestions for improvements, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/AhsanKhodami/doi2bibtex).
-
----
-
-## Credits
-
-- Developed and maintained by [Ahsan Khodami](https://khodami.site).
-- Logos and design inspired by [Khodami.site](https://khodami.site).
+We welcome contributions! If you encounter issues, have feature suggestions, or would like to improve the project, open an issue or submit a pull request via the [GitHub repository](https://github.com/AhsanKhodami/doi2bibtex).
 
 ---
 
-## License
+## **Credits**
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+- **Developer**: [Ahsan Khodami](https://khodami.site)
+- **Design Inspiration**: [Khodami.site](https://khodami.site)
+
+---
+
+## **License**
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.

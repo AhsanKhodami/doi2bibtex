@@ -3,13 +3,13 @@ name: Build and Release EXE
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on pushes to the main branch
   release:
     types:
-      - created
+      - created  # Trigger on new release creation
 
 permissions:
-  contents: write  # Ensure the workflow can write to the repository
+  contents: write  # Ensure the workflow has write permissions
 
 jobs:
   build:
@@ -38,18 +38,29 @@ jobs:
       run: |
         pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py
 
+    - name: Determine Version
+      id: get_version  # Assign an ID for this step to reference the output
+      run: |
+        VERSION=$(python setup.py --version)  # Replace with your preferred method of fetching the version
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
     - name: Create Tag
       run: |
         git config user.name "GitHub Actions"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a v8 -m "Release v8"
-        git push origin v8
+        git tag -a $VERSION -m "Release $VERSION"  # Use the dynamically determined version
+        git push origin $VERSION
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Fetch Tags
+      run: |
+        git fetch --tags
 
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: dist/doi2bibtex.exe
+        tag_name: ${{ env.VERSION }}  # Use the dynamically determined version for the release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

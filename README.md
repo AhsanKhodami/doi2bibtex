@@ -116,7 +116,7 @@ Easily navigate to the `release` here in the **right section** Or [click here](h
 ### Running the Application
 Run the Python script to launch the GUI:
 ```bash
-python doifetch2.py
+python doi2bibtex.py
 ```
 
 ---

@@ -55,10 +55,6 @@ Input one or more DOIs into the text box. You can use any of the following forma
 
 ### 6. Restart the Form
 - Click the **"Restart"** button to clear all input and output fields, resetting the application for new entries.
-
-### 7. Exit the Application
-- Click the **"Exit Application"** button to close the application.
-
 ---
 
 ## Example

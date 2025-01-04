@@ -20,10 +20,12 @@ DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application design
 
 ---
 
-## Version 2.0.0
+## Version v2.0.545680
 
 <details>
-  <summary><strong>What's New in Version 2.0.0?</strong></summary>
+  <summary><strong>What's New in Version 2.v2.0.545680?</strong></summary>
+  <font color="green">This version is tested and working with standalone Windows executable file.</font>
+
   
 ### New Features:
 - **Save BibTeX References**: You can now save the fetched BibTeX entries to a `.bib` file, which is useful for managing your references.

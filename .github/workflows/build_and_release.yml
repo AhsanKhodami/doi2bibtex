@@ -2,11 +2,8 @@ name: Build and Release EXE
 
 on:
   push:
-    branches:
-      - main  # Trigger on pushes to the main branch
-  release:
-    types:
-      - created  # Trigger on new release creation
+    tags:
+      - 'v*'  # Trigger workflow only when a tag matching 'v*' is pushed
 
 permissions:
   contents: write  # Ensure the workflow has write permissions
@@ -28,37 +25,16 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install Pillow --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
-        pip install -r requirements.txt
-
-    - name: Install PyInstaller
-      run: |
         pip install pyinstaller
 
-    - name: Determine Version
-      id: get_version
-      shell: pwsh  # Use PowerShell shell
+    - name: Build EXE with Icon
       run: |
-        $version = python setup.py --version  # Fetch version dynamically
-        echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
-
-    - name: Create Tag
-      shell: pwsh  # Use PowerShell shell
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a $env:VERSION -m "Release $env:VERSION"
-        git push origin $env:VERSION
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Fetch Tags
-      run: |
-        git fetch --tags
+        pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py
 
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: dist/doi2bibtex.exe
-        tag_name: ${{ env.VERSION }}
+        tag_name: ${{ github.ref_name }}  # Use the pushed tag as the release tag
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

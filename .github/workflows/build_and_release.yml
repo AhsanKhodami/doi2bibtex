@@ -34,22 +34,20 @@ jobs:
       run: |
         pip install pyinstaller
 
-    - name: Build EXE with Icon
-      run: |
-        pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py
-
     - name: Determine Version
-      id: get_version  # Assign an ID for this step to reference the output
+      id: get_version
+      shell: pwsh  # Use PowerShell shell
       run: |
-        VERSION=$(python setup.py --version)  # Replace with your preferred method of fetching the version
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        $version = python setup.py --version  # Fetch version dynamically
+        echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
     - name: Create Tag
+      shell: pwsh  # Use PowerShell shell
       run: |
         git config user.name "GitHub Actions"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a $VERSION -m "Release $VERSION"  # Use the dynamically determined version
-        git push origin $VERSION
+        git tag -a $env:VERSION -m "Release $env:VERSION"
+        git push origin $env:VERSION
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -61,6 +59,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: dist/doi2bibtex.exe
-        tag_name: ${{ env.VERSION }}  # Use the dynamically determined version for the release
+        tag_name: ${{ env.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

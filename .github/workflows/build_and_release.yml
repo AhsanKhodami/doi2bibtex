@@ -3,14 +3,17 @@ name: Build and Release EXE
 on:
   push:
     branches:
-      - main  # Trigger this on pushes to the 'main' branch
+      - main
   release:
     types:
-      - created  # Trigger this on new release creation
+      - created
+
+permissions:
+  contents: write  # Ensure the workflow can write to the repository
 
 jobs:
   build:
-    runs-on: windows-latest  # Use Windows for EXE generation
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -19,36 +22,34 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.x  # Specify the Python version you want to use
+        python-version: 3.x
 
     - name: Install dependencies
       run: |
-        pip install --upgrade pip  # Ensure pip is up-to-date
-        # Install precompiled Pillow binaries for Python 3.12 to avoid compilation issues
+        pip install --upgrade pip
         pip install Pillow --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
-        pip install -r requirements.txt  # Install project dependencies
+        pip install -r requirements.txt
 
     - name: Install PyInstaller
       run: |
-        pip install pyinstaller  # Install PyInstaller to build EXE
+        pip install pyinstaller
 
     - name: Build EXE with Icon
       run: |
-        pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py  # Create EXE with custom icon
+        pyinstaller --onefile --icon=doi2bibtex.ico doi2bibtex.py
 
     - name: Create Tag
       run: |
         git config user.name "GitHub Actions"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a v8 -m "Release v8"  # Create the tag
-        git push origin v8  # Push the tag to GitHub
-
+        git tag -a v8 -m "Release v8"
+        git push origin v8
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload EXE to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: dist/doi2bibtex.exe  # Path to the generated EXE
+        files: dist/doi2bibtex.exe
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

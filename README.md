@@ -12,7 +12,6 @@ DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application design
 - Optionally include or exclude the abstract from BibTeX entries.
 - Copy fetched BibTeX entries directly to the clipboard for easy use.
 - Restart the application to input new DOIs.
-- Provides quick links to the application's **Google Scholar profile** and **GitHub repository** for further resources.
 - Clean and modern GUI for seamless user experience.
 
 ---

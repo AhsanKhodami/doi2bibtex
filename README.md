@@ -93,7 +93,7 @@ Enter the following DOIs into the input field:
 ## Installation and Setup
 
 ### Windows Users:
-Easily navigate to the `release` here in the **right section**, download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
+Easily navigate to the `release` here in the **right section** Or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/tag/Windows), download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
 
 ### Prerequisites
 - Python 3.7 or higher installed on your system.

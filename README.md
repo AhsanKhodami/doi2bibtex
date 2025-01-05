@@ -1,4 +1,3 @@
-
 # DOI2BibTeX Fetcher
 
 [![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
@@ -16,7 +15,23 @@ DOI2BibTeX Fetcher is a simple and intuitive Python-based GUI application design
 - Copy fetched BibTeX entries directly to the clipboard for easy use.
 - Restart the application to input new DOIs.
 - Save BibTeX references to a `.bib` file.
-- Clean and modern GUI for seamless user experience.
+- **Auto-Save**: Automatically save BibTeX entries after fetching.
+- **Select Save Location**: You can now choose the location to save the file.
+- Clean and modern GUI for a seamless user experience.
+
+---
+
+## Version 3.0.0
+
+<details>
+  <summary><strong>What's New in Version 3.0.0?</strong></summary>
+  
+### New Features:
+- **Auto-Save**: A new feature that automatically saves the fetched BibTeX entries after every fetch, making the process faster and more efficient.
+- **Select Save Location**: Users can now choose where to save the `.bib` file. Once selected, the location will be remembered for future saves.
+- **Improved Layout**: The checkboxes for "Include Abstract" and "Auto-Save" have been aligned horizontally, offering a more compact and neat layout.
+
+</details>
 
 ---
 
@@ -66,11 +81,12 @@ Input one or more DOIs into the text box. You can use any of the following forma
 - Check the **"Include Abstract"** option if you want BibTeX entries to include abstracts.
 - Leave it unchecked to exclude abstracts.
 
-### 5. Copy to Clipboard
-- After fetching BibTeX entries, click the **"Copy to Clipboard"** button to copy all entries to your clipboard.
+### 5. Auto-Save (New in Version 3.0.0)
+- Check the **"Auto-save"** option to automatically save the BibTeX entries after fetching. This will eliminate the need for you to manually save the entries.
 
-### 6. Save to File (New in Version 2.0.0)
+### 6. Save to File (New in Version 2.0.0 and Updated in Version 3.0.0)
 - After fetching the BibTeX entries, click the **"Save to file"** button to save the entries to a `.bib` file on your computer.
+- The application now remembers the location of your last save. If no location is selected, you'll be prompted to choose a save location.
 - A green "Saved!" message will appear next to the **Save** button to confirm the save action.
 
 ### 7. Restart the Form
@@ -111,7 +127,7 @@ Enter the following DOIs into the input field:
 ## Installation and Setup
 
 ### Windows Users:
-Easily navigate to the `release` here in the **right section** Or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/), download the exe file and run it in one click! or if you are interested in using it as *.py file, follow the below instruction
+Easily navigate to the `release` section here in the **right section** or [click here](https://github.com/AhsanKhodami/doi2bibtex/releases/), download the exe file, and run it with one click! Alternatively, if you prefer to run it as a Python file, follow the instructions below.
 
 ### Prerequisites
 - Python 3.7 or higher installed on your system.

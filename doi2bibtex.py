@@ -1,9 +1,13 @@
 import tkinter as tk
-from tkinter import PhotoImage
+from tkinter import PhotoImage, filedialog
 from PIL import Image, ImageTk
 import requests
 from io import BytesIO
 import os
+import time
+
+# Global variable to store the path of the file where data is saved
+saved_file_path = None
 
 def get_bibtex(doi, include_abstract=False):
     doi = doi.strip()
@@ -35,6 +39,10 @@ def fetch_bibtex():
         combined_bibtex.append(bibtex)
     output_text.insert(tk.END, "\n\n".join(combined_bibtex))
 
+    # If auto-save is enabled, save automatically without asking for file location
+    if auto_save_var.get():
+        save_bibtex_to_file([combined_bibtex])
+
 def copy_bibtex():
     bibtex_text = output_text.get("1.0", tk.END).strip()
     root.clipboard_clear()
@@ -44,6 +52,7 @@ def restart():
     doi_textbox.delete("1.0", tk.END)
     output_text.delete("1.0", tk.END)
     abstract_var.set(False)
+    auto_save_var.set(False)
 
 def open_link(url):
     import webbrowser
@@ -53,34 +62,31 @@ def exit_application():
     root.destroy()
 
 def save_bibtex_to_file(bibtex_entries):
-    file_path = "references.bib"  # The file where references will be saved
-    if not os.path.exists(file_path):
-        # If the file does not exist, create it
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write("\n".join(bibtex_entries))
-    else:
-        # If the file exists, we need to check for duplicates and append
-        existing_dois = set()
-        with open(file_path, "r", encoding="utf-8") as f:
-            # Read existing DOIs from the file
-            existing_dois = {line.strip().split("{")[1].split(",")[0] for line in f if line.strip().startswith("@")}
-        
-        with open(file_path, "a", encoding="utf-8") as f:
-            for bibtex in bibtex_entries:
-                # Extract DOI from the BibTeX entry (assuming it's the first field)
-                new_doi = bibtex.split("{")[1].split(",")[0]
-                if new_doi not in existing_dois:
-                    f.write("\n" + bibtex)  # Add to file if DOI is not already present
-                    existing_dois.add(new_doi)
+    global saved_file_path  # Access the global file path variable
+
+    # If no file path is saved yet, prompt the user for the file location
+    if saved_file_path is None:
+        saved_file_path = filedialog.asksaveasfilename(defaultextension=".bib", filetypes=[("BibTeX files", "*.bib"), ("Text files", "*.txt")])
+    
+    # If the user cancels the save, return
+    if not saved_file_path:
+        message_label.config(text="Save operation canceled", fg="red")
+        return
+
+    # Open the file in append mode and write the new BibTeX entries
+    with open(saved_file_path, "a", encoding="utf-8") as f:
+        f.write("\n".join(bibtex_entries))
+    
+    # Show the location and timestamp of the saved file
+    timestamp = time.strftime("%H:%M:%S")
+    message_label.config(text=f"Data saved to {saved_file_path} at {timestamp}", fg="green")
 
 def save_to_file():
-    """Handle save button click event."""
     bibtex_text = output_text.get("1.0", tk.END).strip()
     if not bibtex_text:
         message_label.config(text="No BibTeX to save!", fg="red")
         return
     save_bibtex_to_file([bibtex_text])
-    message_label.config(text="Saved!", fg="green")  # Show green "Saved!" message
 
 root = tk.Tk()
 root.title("DOI2BibTeX Fetcher")
@@ -149,10 +155,19 @@ prompt_label.pack(pady=5)
 doi_textbox = tk.Text(root, width=70, height=5, font=("Helvetica", 10))
 doi_textbox.pack(padx=5, pady=5)
 
+# Frame for checkboxes (horizontally aligned)
+checkbox_frame = tk.Frame(root, bg="#f5f5f5")
+checkbox_frame.pack(pady=5)
+
 # Checkbox for abstract
 abstract_var = tk.BooleanVar(value=False)
-abstract_check = tk.Checkbutton(root, text="Include abstract", variable=abstract_var, bg="#f5f5f5", font=("Helvetica", 10))
-abstract_check.pack(pady=5)
+abstract_check = tk.Checkbutton(checkbox_frame, text="Include abstract", variable=abstract_var, bg="#f5f5f5", font=("Helvetica", 10))
+abstract_check.pack(side=tk.LEFT, padx=10)
+
+# Checkbox for auto-save
+auto_save_var = tk.BooleanVar(value=False)
+auto_save_check = tk.Checkbutton(checkbox_frame, text="Auto-save after fetch", variable=auto_save_var, bg="#f5f5f5", font=("Helvetica", 10))
+auto_save_check.pack(side=tk.LEFT, padx=10)
 
 # Frame for Fetch and Save buttons
 button_frame = tk.Frame(root, bg="#f5f5f5")

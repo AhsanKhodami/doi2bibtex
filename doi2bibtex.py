@@ -7,6 +7,12 @@ import os
 import time
 import webbrowser
 
+# Get the absolute path to the directory where the executable or script resides
+base_path = os.path.abspath(os.path.dirname(__file__))
+
+# Path to the icon file
+icon_path = os.path.join(base_path, "doi2bibtex.ico")
+
 # Global variable to store the path of the file where data is saved
 saved_file_path = None
 unsaved_changes = False  # Tracks whether there are unsaved changes
@@ -127,7 +133,7 @@ root.title("DOI2BibTeX Fetcher")
 root.configure(bg="#f5f5f5")
 
 # Set the custom application icon
-root.iconbitmap("doi2bibtex.ico")
+root.iconbitmap(icon_path)
 
 # Top frame for logo, links, and buttons
 top_frame = tk.Frame(root, bg="#0073e6", height=100)
@@ -145,7 +151,7 @@ logo_label.pack(side=tk.LEFT, padx=10, pady=10)
 
 # Header text
 header_label = tk.Label(
-    top_frame, text="    DOI2BibTeX Fetcher", font=("Helvetica", 16, "bold"), fg="white", bg="#0073e6"
+    top_frame, text="DOI2BibTeX Fetcher", font=("Helvetica", 16, "bold"), fg="white", bg="#0073e6"
 )
 header_label.pack(side=tk.LEFT, padx=20)
 
@@ -160,7 +166,7 @@ visit_icon_image = Image.open(BytesIO(response.content))
 visit_icon_image.thumbnail((25, 25))
 visit_icon = ImageTk.PhotoImage(visit_icon_image)
 
-visit_button = tk.Button(button_links_frame, image=visit_icon, text="Visit My Website |", compound=tk.LEFT, command=lambda: open_link("https://khodami.site"), bg="#0073e6", fg="white", font=("Helvetica", 10, "bold"), borderwidth=0)
+visit_button = tk.Button(button_links_frame, image=visit_icon, text="Visit My Website", compound=tk.LEFT, command=lambda: open_link("https://khodami.site"), bg="#0073e6", fg="white", font=("Helvetica", 10, "bold"), borderwidth=0)
 visit_button.pack(side=tk.LEFT, padx=5)
 
 # Help button
@@ -170,7 +176,7 @@ help_icon_image = Image.open(BytesIO(response.content))
 help_icon_image.thumbnail((25, 25))
 help_icon = ImageTk.PhotoImage(help_icon_image)
 
-help_button = tk.Button(button_links_frame, image=help_icon, text="Help |", compound=tk.LEFT, command=lambda: open_link("https://ahsankhodami.github.io/doi2bibtex/#how-to-use"), bg="#0073e6", fg="white", font=("Helvetica", 10, "bold"), borderwidth=0)
+help_button = tk.Button(button_links_frame, image=help_icon, text="Help", compound=tk.LEFT, command=lambda: open_link("https://ahsankhodami.github.io/doi2bibtex/#how-to-use"), bg="#0073e6", fg="white", font=("Helvetica", 10, "bold"), borderwidth=0)
 help_button.pack(side=tk.LEFT, padx=5)
 
 # Contact button

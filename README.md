@@ -1,6 +1,7 @@
+# DOI2BibTeX Fetcher
+
 ## ⚠️ We strongly recommend using the [official website](https://ahsankhodami.github.io/doi2bibtex/) for the latest version of the README and the application.
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -105,6 +106,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+        .expanded {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +122,9 @@
                 <img src="https://image.flaticon.com/icons/png/512/1946/1946488.png" alt="Website Icon"> Project Website
             </a>
             <div class="badge">
-                [![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
+                <a href="https://doi.org/10.5281/zenodo.14599850">
+                    <img src="https://zenodo.org/badge/912144751.svg" alt="DOI">
+                </a>
             </div>
         </div>
         <div class="content">
@@ -134,7 +140,7 @@
                 <li>Clean and modern GUI for a seamless user experience.</li>
             </ul>
             <h2>Version 3.0.1</h2>
-            <details>
+            <details open>
                 <summary><strong>What's New in Version 3.0.0?</strong></summary>
                 <ul>
                     <li><strong>Auto-Save</strong>: A new feature that automatically saves the fetched BibTeX entries after every fetch, making the process faster and more efficient.</li>

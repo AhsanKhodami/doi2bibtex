@@ -7,12 +7,6 @@ import os
 import time
 import webbrowser
 
-# Get the absolute path to the directory where the executable or script resides
-base_path = os.path.abspath(os.path.dirname(__file__))
-
-# Path to the icon file
-icon_path = os.path.join(base_path, "doi2bibtex.ico")
-
 # Global variable to store the path of the file where data is saved
 saved_file_path = None
 unsaved_changes = False  # Tracks whether there are unsaved changes
@@ -131,9 +125,6 @@ def save_to_file():
 root = tk.Tk()
 root.title("DOI2BibTeX Fetcher")
 root.configure(bg="#f5f5f5")
-
-# Set the custom application icon
-root.iconbitmap(icon_path)
 
 # Top frame for logo, links, and buttons
 top_frame = tk.Frame(root, bg="#0073e6", height=100)

@@ -1,3 +1,5 @@
+## ⚠️ We strongly recommend using the [official website](https://ahsankhodami.github.io/doi2bibtex/) for the latest version of the README and the application.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +38,14 @@
         .header a {
             text-decoration: none;
             color: #007BFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
         }
         .header a:hover {
             text-decoration: underline;
@@ -58,6 +68,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         .content h2 {
             border-bottom: 2px solid #007BFF;
@@ -87,6 +98,13 @@
             border-radius: 4px;
             overflow-x: auto;
         }
+        .box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -96,7 +114,9 @@
         <div class="header">
             <img src="https://raw.githubusercontent.com/AhsanKhodami/doi2bibtex/refs/heads/main/mainapplication.png" alt="DOI2BibTeX Fetcher">
             <h1>DOI2BibTeX Fetcher</h1>
-            <a href="https://ahsankhodami.github.io/doi2bibtex/"><img src="https://image.flaticon.com/icons/png/512/1946/1946488.png" alt="Website Icon" width="20"> Project Website</a>
+            <a href="https://ahsankhodami.github.io/doi2bibtex/">
+                <img src="https://image.flaticon.com/icons/png/512/1946/1946488.png" alt="Website Icon"> Project Website
+            </a>
             <div class="badge">
                 [![DOI](https://zenodo.org/badge/912144751.svg)](https://doi.org/10.5281/zenodo.14599850)
             </div>
@@ -171,6 +191,13 @@
                     Click <strong>"Restart"</strong> to clear all input and output fields.
                 </li>
             </ol>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="column">
+        <div class="box">
             <h2>Example</h2>
             <h3>Input</h3>
             <pre>
@@ -197,9 +224,6 @@
             </pre>
         </div>
     </div>
-</div>
-
-<div class="container">
     <div class="column">
         <div class="content">
             <h2>Installation and Setup</h2>
@@ -222,6 +246,9 @@
             </ol>
         </div>
     </div>
+</div>
+
+<div class="container">
     <div class="column">
         <div class="content">
             <h2>Contribution</h2>
@@ -232,7 +259,7 @@
                 <li><strong>Design Inspiration</strong>: <a href="https://khodami.site">Khodami.site</a></li>
             </ul>
             <h2>License</h2>
-            <p>This project is licensed under the MIT License. See the <code>LICENSE</code> file for more details.</p>
+            <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@
 
 
 
-## **Version 3.0.0**
+## **Version 3.0.1**
 
 <details>
   <summary><strong>What's New in Version 3.0.0?</strong></summary>
@@ -34,11 +34,10 @@
 - **Auto-Save**: A new feature that automatically saves the fetched BibTeX entries after every fetch, making the process faster and more efficient.
 - **Select Save Location**: Users can now choose where to save the `.bib` file. Once selected, the location will be remembered for future saves.
 - **Improved Layout**: The checkboxes for "Include Abstract" and "Auto-Save" have been aligned horizontally, offering a more compact and neat layout.
-
-  <div align="center">
-    <img src="./v3-changes.png" alt="Version 3.0.0 Changes">
-  </div>
-  </details>
+- **Updated Icons**: The application now features new icons for the control buttons, enhancing the overall visual appeal.
+- **Bug Fixes**: Several minor bugs have been fixed to improve the application's performance and stability.
+- **check saving** : application checks if the file is saved or not and if not saved, it will ask the user to save the file before closing the application.
+- **progress bar** : a progress bar is added to show the progress of fetching the bibtex entries.
 
 
 

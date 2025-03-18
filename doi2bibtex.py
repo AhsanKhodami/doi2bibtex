@@ -6,6 +6,8 @@ from io import BytesIO
 import os
 import time
 import webbrowser
+import unicodedata
+import re
 
 # Global variable to store the path of the file where data is saved
 saved_file_path = None
@@ -16,6 +18,36 @@ def open_link(url):
 
 def send_email(email_address):
     webbrowser.open(f"mailto:{email_address}")
+
+def normalize_text(text):
+    # Normalize non-English characters to their closest ASCII equivalents
+    normalized = unicodedata.normalize('NFKD', text)
+    normalized = ''.join([c for c in normalized if not unicodedata.combining(c)])
+    return normalized
+
+def escape_special_chars(text):
+    # Escape underscores in URLs for LaTeX compatibility
+    # Look for patterns that might be URLs or DOIs
+    pattern = r'(https?://[^\s]+|doi\.org/[^\s]+|10\.\d+/[^\s]+)'
+    
+    def replace_url(match):
+        url = match.group(0)
+        return url.replace('_', '\\_')
+    
+    # First escape underscores in URLs
+    text = re.sub(pattern, replace_url, text)
+    
+    # Handle ampersands - we need to use a single backslash in the output
+    # First replace HTML entity &amp; with a temporary placeholder
+    text = text.replace('&amp;', '###AMP###')
+    
+    # Then replace regular ampersands with the LaTeX escape
+    text = text.replace('&', '\\&')
+    
+    # Finally replace the placeholder with the LaTeX escape
+    text = text.replace('###AMP###', '\\&')
+    
+    return text
 
 def get_bibtex(doi, include_abstract=False):
     doi = doi.strip()
@@ -29,8 +61,12 @@ def get_bibtex(doi, include_abstract=False):
         if not include_abstract:
             cleaned_lines = [line for line in bibtex_entry.split('\n') if not line.strip().lower().startswith('abstract')]
             bibtex_entry = '\n'.join(cleaned_lines).strip()
-        # Filter out non-alphabetic characters (excluding common BibTeX symbols)
+        # Filter out non-printable characters
         bibtex_entry = ''.join(char for char in bibtex_entry if char.isprintable())
+        # Normalize non-English characters
+        bibtex_entry = normalize_text(bibtex_entry)
+        # Escape special characters (underscores in URLs and ampersands)
+        bibtex_entry = escape_special_chars(bibtex_entry)
         return bibtex_entry
     except requests.exceptions.RequestException as e:
         return f"Error fetching {doi}: {e}"
